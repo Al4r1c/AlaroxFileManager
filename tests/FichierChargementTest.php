@@ -5,6 +5,7 @@ use FichierChargement\Php;
 use FichierChargement\Xml;
 use FichierChargement\Yaml;
 use org\bovigo\vfs\vfsStream;
+use org\bovigo\vfs\vfsStreamDirectory;
 use org\bovigo\vfs\vfsStreamWrapper;
 
 class FichierChargementTest extends \PHPUnit_Framework_TestCase
@@ -12,7 +13,7 @@ class FichierChargementTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         vfsStreamWrapper::register();
-        vfsStreamWrapper::setRoot(new \org\bovigo\vfs\vfsStreamDirectory('testPath'));
+        vfsStreamWrapper::setRoot(new vfsStreamDirectory('testPath'));
     }
 
     public function testChargerPhp()

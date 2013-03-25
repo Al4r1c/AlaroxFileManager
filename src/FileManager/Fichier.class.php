@@ -1,5 +1,5 @@
 <?php
-namespace FileManager;
+namespace AlaroxFileManager;
 
 class Fichier
 {

@@ -1,7 +1,7 @@
 <?php
 namespace Tests\ServeurTests\Lib;
 
-use FileManager\Fichier;
+use AlaroxFileManager\Fichier;
 
 class FichierTest extends \PHPUnit_Framework_TestCase
 {
@@ -15,7 +15,7 @@ class FichierTest extends \PHPUnit_Framework_TestCase
 
     public function testFileSystem()
     {
-        $fileSystem = $this->getMock('\FileManager\FileSystem');
+        $fileSystem = $this->getMock('\AlaroxFileManager\FileSystem');
 
         $this->fichier->setFileSystem($fileSystem);
 
@@ -47,7 +47,7 @@ class FichierTest extends \PHPUnit_Framework_TestCase
 
     public function testVerifierExistence()
     {
-        $fileSystem = $this->getMock('\FileManager\FileSystem', array('fichierExiste'));
+        $fileSystem = $this->getMock('\AlaroxFileManager\FileSystem', array('fichierExiste'));
         $fileSystem->expects($this->once())
             ->method('fichierExiste')
             ->with('file.txt')
@@ -62,7 +62,7 @@ class FichierTest extends \PHPUnit_Framework_TestCase
 
     public function testVerifierExistenceFalse()
     {
-        $fileSystem = $this->getMock('\FileManager\FileSystem', array('fichierExiste'));
+        $fileSystem = $this->getMock('\AlaroxFileManager\FileSystem', array('fichierExiste'));
         $fileSystem->expects($this->once())
             ->method('fichierExiste')
             ->with('/path/to/image.png')
@@ -77,7 +77,7 @@ class FichierTest extends \PHPUnit_Framework_TestCase
 
     public function testCreerFichier()
     {
-        $fileSystem = $this->getMock('\FileManager\FileSystem', array('fichierExiste', 'creerFichier'));
+        $fileSystem = $this->getMock('\AlaroxFileManager\FileSystem', array('fichierExiste', 'creerFichier'));
         $fileSystem->expects($this->once())
             ->method('fichierExiste')
             ->with('/path/to/image.png')
@@ -96,7 +96,7 @@ class FichierTest extends \PHPUnit_Framework_TestCase
 
     public function testNeRecreerPasFichierExisteDeja()
     {
-        $fileSystem = $this->getMock('\FileManager\FileSystem', array('fichierExiste', 'creerFichier'));
+        $fileSystem = $this->getMock('\AlaroxFileManager\FileSystem', array('fichierExiste', 'creerFichier'));
         $fileSystem->expects($this->once())
             ->method('fichierExiste')
             ->with('/path/to/image.png')
@@ -114,7 +114,7 @@ class FichierTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreerBug()
     {
-        $fileSystem = $this->getMock('\FileManager\FileSystem', array('fichierExiste', 'creerFichier'));
+        $fileSystem = $this->getMock('\AlaroxFileManager\FileSystem', array('fichierExiste', 'creerFichier'));
         $fileSystem->expects($this->once())
             ->method('fichierExiste')
             ->with('monFichier.txt')
@@ -133,7 +133,7 @@ class FichierTest extends \PHPUnit_Framework_TestCase
 
     public function testChargerFichier()
     {
-        $fileSystem = $this->getMock('\FileManager\FileSystem', array('fichierExiste', 'chargerFichier'));
+        $fileSystem = $this->getMock('\AlaroxFileManager\FileSystem', array('fichierExiste', 'chargerFichier'));
         $fileSystem->expects($this->once())
             ->method('fichierExiste')
             ->with('filed.php')
@@ -155,7 +155,7 @@ class FichierTest extends \PHPUnit_Framework_TestCase
      */
     public function testChargerFichierInexistant()
     {
-        $fileSystem = $this->getMock('\FileManager\FileSystem', array('fichierExiste', 'chargerFichier'));
+        $fileSystem = $this->getMock('\AlaroxFileManager\FileSystem', array('fichierExiste', 'chargerFichier'));
         $fileSystem->expects($this->once())
             ->method('fichierExiste')
             ->with('filed.php')
@@ -170,7 +170,7 @@ class FichierTest extends \PHPUnit_Framework_TestCase
 
     public function testEcrire()
     {
-        $fileSystem = $this->getMock('\FileManager\FileSystem', array('fichierExiste', 'ecrireDansFichier'));
+        $fileSystem = $this->getMock('\AlaroxFileManager\FileSystem', array('fichierExiste', 'ecrireDansFichier'));
         $fileSystem->expects($this->once())
             ->method('fichierExiste')
             ->with('monFichier.txt')
@@ -192,7 +192,7 @@ class FichierTest extends \PHPUnit_Framework_TestCase
      */
     public function testEcrireFichierInexistant()
     {
-        $fileSystem = $this->getMock('\FileManager\FileSystem', array('fichierExiste', 'ecrireDansFichier'));
+        $fileSystem = $this->getMock('\AlaroxFileManager\FileSystem', array('fichierExiste', 'ecrireDansFichier'));
         $fileSystem->expects($this->once())
             ->method('fichierExiste')
             ->with('monFichier.txt')

@@ -1,8 +1,9 @@
 <?php
 namespace Tests\ServeurTests\Lib;
 
-use FileManager\FileSystem;
+use AlaroxFileManager\FileSystem;
 use org\bovigo\vfs\vfsStream;
+use org\bovigo\vfs\vfsStreamDirectory;
 use org\bovigo\vfs\vfsStreamWrapper;
 
 class FileSystemTest extends \PHPUnit_Framework_TestCase
@@ -18,7 +19,7 @@ class FileSystemTest extends \PHPUnit_Framework_TestCase
     private function activerFakeFileSystem()
     {
         vfsStreamWrapper::register();
-        vfsStreamWrapper::setRoot(new \org\bovigo\vfs\vfsStreamDirectory('testPath'));
+        vfsStreamWrapper::setRoot(new vfsStreamDirectory('testPath'));
     }
 
     public function testFichierExiste()

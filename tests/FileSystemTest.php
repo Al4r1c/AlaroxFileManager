@@ -1,7 +1,8 @@
 <?php
 namespace Tests\ServeurTests\Lib;
 
-use AlaroxFileManager\FileSystem;
+
+use AlaroxFileManager\FileManager\FileSystem;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use org\bovigo\vfs\vfsStreamWrapper;
@@ -127,7 +128,7 @@ class FileSystemTest extends \PHPUnit_Framework_TestCase
     {
         $this->activerFakeFileSystem();
 
-        $abstractChargeur = $this->getMockForAbstractClass('\\FichierChargement\\AbstractChargeurFichier');
+        $abstractChargeur = $this->getMockForAbstractClass('AlaroxFileManager\ChargementFichier\AbstractChargeurFichier');
         $abstractChargeur
             ->expects($this->once())
             ->method('chargerFichier')
@@ -189,7 +190,8 @@ class FileSystemTest extends \PHPUnit_Framework_TestCase
         $this->_fileSystem->chargerFichier(vfsStream::url('testPath/fichier.php'));
     }
 
-    public function testEcrire() {
+    public function testEcrire()
+    {
         $this->activerFakeFileSystem();
 
         $this->_fileSystem->creerFichier(vfsStream::url('testPath/fichier.php'));

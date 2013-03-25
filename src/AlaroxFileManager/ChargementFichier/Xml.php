@@ -1,5 +1,5 @@
 <?php
-namespace FichierChargement;
+namespace AlaroxFileManager\ChargementFichier;
 
 class Xml extends AbstractChargeurFichier
 {

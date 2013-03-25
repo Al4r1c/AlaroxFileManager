@@ -1,9 +1,9 @@
 <?php
 namespace Tests\ServeurTests\Lib;
 
-use FichierChargement\Php;
-use FichierChargement\Xml;
-use FichierChargement\Yaml;
+use AlaroxFileManager\ChargementFichier\Php;
+use AlaroxFileManager\ChargementFichier\Xml;
+use AlaroxFileManager\ChargementFichier\Yaml;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use org\bovigo\vfs\vfsStreamWrapper;

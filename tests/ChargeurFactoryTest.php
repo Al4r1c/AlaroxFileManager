@@ -1,7 +1,7 @@
 <?php
 namespace Tests\ServeurTests\Lib;
 
-use FichierChargement\ChargeurFactory;
+use AlaroxFileManager\ChargementFichier\ChargeurFactory;
 
 class ChargeurFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -15,17 +15,17 @@ class ChargeurFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testChargeurPhp()
     {
-        $this->assertInstanceOf('FichierChargement\Php', $this->_chargeurFactory->getClasseDeChargement('php'));
+        $this->assertInstanceOf('AlaroxFileManager\ChargementFichier\Php', $this->_chargeurFactory->getClasseDeChargement('php'));
     }
 
     public function testChargeurXml()
     {
-        $this->assertInstanceOf('FichierChargement\Xml', $this->_chargeurFactory->getClasseDeChargement('xml'));
+        $this->assertInstanceOf('AlaroxFileManager\ChargementFichier\Xml', $this->_chargeurFactory->getClasseDeChargement('xml'));
     }
 
     public function testChargeurYaml()
     {
-        $this->assertInstanceOf('FichierChargement\Yaml', $this->_chargeurFactory->getClasseDeChargement('yaml'));
+        $this->assertInstanceOf('AlaroxFileManager\ChargementFichier\Yaml', $this->_chargeurFactory->getClasseDeChargement('yaml'));
     }
 
     public function testChargeurInexistant()

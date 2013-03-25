@@ -20,7 +20,6 @@
 		}
 	],
 	"require": {
-
 		"php": ">=5.4.0",
 		"alarox/AlaroxClassLoader": "dev-master",
 		"alarox/AlaroxXMLParser": "dev-master",
@@ -28,6 +27,8 @@
 		"mikey179/vfsStream": "v1.1.0"
 	},
 	"autoload": {
-		"files": [ "src/AlaroxFile.php" ]
+		"psr-0": {
+			"AlaroxFileManager": "src/"
+		}
 	}
 }

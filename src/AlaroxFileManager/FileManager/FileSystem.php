@@ -1,7 +1,8 @@
 <?php
-namespace AlaroxFileManager;
+namespace AlaroxFileManager\FileManager;
 
-use FichierChargement\ChargeurFactory;
+use AlaroxFileManager\ChargementFichier\AbstractChargeurFichier;
+use AlaroxFileManager\ChargementFichier\ChargeurFactory;
 
 class FileSystem
 {
@@ -114,7 +115,7 @@ class FileSystem
             throw new \Exception('File "' . $cheminVersFichier . '" does not exist and nothing got charged.');
         }
 
-        /** @var $chargeur \FichierChargement\AbstractChargeurFichier */
+        /** @var $chargeur AbstractChargeurFichier */
         if (false ===
             $chargeur = $this->_chargeurFactory->getClasseDeChargement($this->getExtension($cheminVersFichier))
         ) {

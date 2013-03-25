@@ -23,7 +23,7 @@
 		"php": ">=5.4.0",
 		"alarox/AlaroxClassLoader": "dev-master",
 		"alarox/AlaroxXMLParser": "dev-master",
-		"lespoilus/spyc": "dev-master",
+		"mustangostang/spyc": "0.5.*@dev",
 		"mikey179/vfsStream": "v1.1.0"
 	},
 	"autoload": {

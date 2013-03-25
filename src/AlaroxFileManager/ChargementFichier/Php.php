@@ -9,6 +9,6 @@ class Php extends AbstractChargeurFichier
      */
     public function chargerFichier($locationFichier)
     {
-        return include $locationFichier;
+        return require $locationFichier;
     }
 }

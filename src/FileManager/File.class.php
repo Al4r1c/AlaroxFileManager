@@ -1,7 +1,7 @@
 <?php
 namespace AlaroxFileManager;
 
-class Fichier
+class File
 {
     /**
      * @var FileSystem

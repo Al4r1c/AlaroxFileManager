@@ -1,16 +1,16 @@
 <?php
 namespace Tests\ServeurTests\Lib;
 
-use AlaroxFileManager\Fichier;
+use AlaroxFileManager\File;
 
 class FichierTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var Fichier */
+    /** @var File */
     private $fichier;
 
     public function setUp()
     {
-        $this->fichier = new Fichier();
+        $this->fichier = new File();
     }
 
     public function testFileSystem()

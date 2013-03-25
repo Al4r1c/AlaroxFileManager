@@ -8,6 +8,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
         $alaroxFile = new \AlaroxFile('path/to/file.png');
         $file = $alaroxFile->getFile('path/to/file.png');
 
-        $this->assertInstanceOf('AlaroxFileManager\Fichier', $file);
+        $this->assertInstanceOf('AlaroxFileManager\File', $file);
     }
 }

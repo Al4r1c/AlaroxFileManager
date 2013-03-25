@@ -3,7 +3,7 @@ class AlaroxFile
 {
     /**
      * @param string $cheminVersFichier
-     * @return \AlaroxFileManager\Fichier
+     * @return \AlaroxFileManager\File
      */
     public function getFile($cheminVersFichier)
     {
@@ -15,7 +15,7 @@ class AlaroxFile
         $fileSystem = new \AlaroxFileManager\FileSystem();
         $fileSystem->setChargeurFactory(new \FichierChargement\ChargeurFactory());
 
-        $file = new \AlaroxFileManager\Fichier();
+        $file = new \AlaroxFileManager\File();
         $file->setPathToFile($cheminVersFichier);
         $file->setFileSystem($fileSystem);
 

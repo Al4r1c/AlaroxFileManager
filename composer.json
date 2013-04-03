@@ -21,8 +21,8 @@
 	],
 	"require": {
 		"php": ">=5.4.0",
-		"alarox/AlaroxClassLoader": "dev-master",
-		"alarox/AlaroxXMLParser": "dev-master",
+		"alarox/AlaroxClassLoader": "v1.0",
+		"alarox/AlaroxXMLParser": "v0.3",
 		"mustangostang/spyc": "0.5.*@dev",
 		"mikey179/vfsStream": "v1.1.0"
 	},

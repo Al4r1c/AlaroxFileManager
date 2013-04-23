@@ -24,7 +24,7 @@
 		"alarox/AlaroxClassLoader": "v1.0",
 		"alarox/AlaroxXMLParser": "v0.3",
 		"mustangostang/spyc": "0.5.*@dev",
-		"mikey179/vfsStream": "v1.1.0"
+		"mikey179/vfsStream": "v1.2.0"
 	},
 	"autoload": {
 		"psr-0": {

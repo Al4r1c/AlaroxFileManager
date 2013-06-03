@@ -88,15 +88,16 @@ class File
 
     /**
      * @param string $content
-     * @return bool
+     * @param bool $appendContent
      * @throws \Exception
+     * @return bool
      */
-    public function writeInFile($content)
+    public function writeInFile($content, $appendContent = true)
     {
         if (!$this->fileExist()) {
             throw new \Exception('Can\t write in file "' . $this->_pathToFile . '" because it does not exist.');
         }
 
-        return $this->_fileSystemInstance->ecrireDansFichier($this->_pathToFile, $content) !== false;
+        return $this->_fileSystemInstance->ecrireDansFichier($this->_pathToFile, $content, $appendContent) !== false;
     }
 }

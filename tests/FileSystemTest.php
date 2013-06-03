@@ -215,4 +215,28 @@ class FileSystemTest extends \PHPUnit_Framework_TestCase
     {
         $this->_fileSystem->ecrireDansFichier('fichier.php', "Nouvelle ligne\n");
     }
+
+    public function testEcrireAppend()
+    {
+        $this->activerFakeFileSystem();
+
+        $this->_fileSystem->creerFichier(vfsStream::url('testPath/fichier.php'));
+        $this->_fileSystem->ecrireDansFichier(vfsStream::url('testPath/fichier.php'), "Nouvelle ligne\n");
+        $this->_fileSystem->ecrireDansFichier(vfsStream::url('testPath/fichier.php'), "Nouvelle ligne2", true);
+
+        $this->assertEquals("Nouvelle ligne\nNouvelle ligne2", file_get_contents(vfsStream::url('testPath/fichier.php')));
+    }
+
+    public function testEcrireReplace()
+    {
+        $this->activerFakeFileSystem();
+
+        $this->_fileSystem->creerFichier(vfsStream::url('testPath/fichier.php'));
+        $this->_fileSystem->ecrireDansFichier(vfsStream::url('testPath/fichier.php'), "Nouvelle ligne\n");
+        $this->_fileSystem->ecrireDansFichier(vfsStream::url('testPath/fichier.php'), "Nouvelle ligne2\n");
+        $this->_fileSystem->ecrireDansFichier(vfsStream::url('testPath/fichier.php'), "Hello");
+
+        $this->assertEquals("Hello", file_get_contents(vfsStream::url('testPath/fichier.php')));
+    }
+
 }

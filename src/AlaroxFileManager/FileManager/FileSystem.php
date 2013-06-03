@@ -121,7 +121,7 @@ class FileSystem
         ) {
             throw new \Exception(
                 'File with extension "' . $this->getExtension($cheminVersFichier) . '" can\'t be loaded. (File: ' .
-                    $cheminVersFichier . ')');
+                $cheminVersFichier . ')');
         }
 
         return $chargeur->chargerFichier($cheminVersFichier);
@@ -130,11 +130,12 @@ class FileSystem
     /**
      * @param string $cheminVersFichier
      * @param mixed $nouveauContenu
-     * @return int
+     * @param bool $writeNext
      * @throws \InvalidArgumentException
      * @throws \Exception
+     * @return int
      */
-    public function ecrireDansFichier($cheminVersFichier, $nouveauContenu)
+    public function ecrireDansFichier($cheminVersFichier, $nouveauContenu, $writeNext = false)
     {
         if (!is_string($cheminVersFichier)) {
             throw new \InvalidArgumentException('Invalid path, expected string.');
@@ -144,6 +145,12 @@ class FileSystem
             throw new \Exception('File "' . $cheminVersFichier . '" does not exist and nothing got charged.');
         }
 
-        return file_put_contents($cheminVersFichier, $nouveauContenu, FILE_APPEND);
+        if ($writeNext === true) {
+            $flag = FILE_APPEND;
+        } else {
+            $flag = 0;
+        }
+
+        return file_put_contents($cheminVersFichier, $nouveauContenu, $flag);
     }
 }

@@ -177,7 +177,7 @@ class FichierTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(true));
         $fileSystem->expects($this->once())
             ->method('ecrireDansFichier')
-            ->with('monFichier.txt', 'New content')
+            ->with('monFichier.txt', 'New content', true)
             ->will($this->returnValue(1));
 
         $this->fichier->setFileSystem($fileSystem);
@@ -185,6 +185,25 @@ class FichierTest extends \PHPUnit_Framework_TestCase
         $this->fichier->setPathToFile('monFichier.txt');
 
         $this->assertTrue($this->fichier->writeInFile('New content'));
+    }
+
+    public function testRemplacer()
+    {
+        $fileSystem = $this->getMock('AlaroxFileManager\FileManager\FileSystem', array('fichierExiste', 'ecrireDansFichier'));
+        $fileSystem->expects($this->once())
+        ->method('fichierExiste')
+        ->with('monFichier.txt')
+        ->will($this->returnValue(true));
+        $fileSystem->expects($this->once())
+        ->method('ecrireDansFichier')
+        ->with('monFichier.txt', 'New content', false)
+        ->will($this->returnValue(1));
+
+        $this->fichier->setFileSystem($fileSystem);
+
+        $this->fichier->setPathToFile('monFichier.txt');
+
+        $this->assertTrue($this->fichier->writeInFile('New content', false));
     }
 
     /**

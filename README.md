@@ -1,4 +1,4 @@
-AlaroxFileManager v0.2
+AlaroxFileManager v0.3
 =================
 
 

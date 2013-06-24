@@ -13,6 +13,9 @@ class File
      */
     private $_pathToFile;
 
+    /**
+     * @return FileSystem
+     */
     public function getFileSystem()
     {
         return $this->_fileSystemInstance;
@@ -31,6 +34,9 @@ class File
         $this->_fileSystemInstance = $fileSystem;
     }
 
+    /**
+     * @return string
+     */
     public function getPathToFile()
     {
         return $this->_pathToFile;

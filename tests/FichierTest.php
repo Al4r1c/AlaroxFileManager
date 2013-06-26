@@ -194,6 +194,7 @@ class FichierTest extends \PHPUnit_Framework_TestCase
         ->method('fichierExiste')
         ->with('monFichier.txt')
         ->will($this->returnValue(true));
+
         $fileSystem->expects($this->once())
         ->method('ecrireDansFichier')
         ->with('monFichier.txt', 'New content', false)
@@ -222,5 +223,77 @@ class FichierTest extends \PHPUnit_Framework_TestCase
         $this->fichier->setPathToFile('monFichier.txt');
 
         $this->fichier->writeInFile('New content');
+    }
+
+    public function testMoveFile() {
+        $fileSystem = $this->getMock('AlaroxFileManager\FileManager\FileSystem', array('fichierExiste', 'deplacerFichier'));
+        $fileSystem->expects($this->once())
+        ->method('fichierExiste')
+        ->with('monFichier.txt')
+        ->will($this->returnValue(true));
+
+        $fileSystem->expects($this->once())
+        ->method('deplacerFichier')
+        ->with('monFichier.txt', '/root/rename.txt')
+        ->will($this->returnValue(true));
+
+        $this->fichier->setFileSystem($fileSystem);
+
+        $this->fichier->setPathToFile('monFichier.txt');
+
+        $this->assertTrue($this->fichier->moveFile('/root/rename.txt'));
+    }
+
+    /**
+     * @expectedException     \Exception
+     */
+    public function testMoveFileNotExist() {
+        $fileSystem = $this->getMock('AlaroxFileManager\FileManager\FileSystem', array('fichierExiste'));
+        $fileSystem->expects($this->once())
+        ->method('fichierExiste')
+        ->with('filed.php')
+        ->will($this->returnValue(false));
+
+        $this->fichier->setFileSystem($fileSystem);
+
+        $this->fichier->setPathToFile('filed.php');
+
+        $this->fichier->moveFile('/new/path');
+    }
+
+    public function testDeleteFile() {
+        $fileSystem = $this->getMock('AlaroxFileManager\FileManager\FileSystem', array('fichierExiste', 'supprimerFichier'));
+        $fileSystem->expects($this->once())
+        ->method('fichierExiste')
+        ->with('monFichier.txt')
+        ->will($this->returnValue(true));
+
+        $fileSystem->expects($this->once())
+        ->method('supprimerFichier')
+        ->with('monFichier.txt')
+        ->will($this->returnValue(true));
+
+        $this->fichier->setFileSystem($fileSystem);
+
+        $this->fichier->setPathToFile('monFichier.txt');
+
+        $this->assertTrue($this->fichier->deleteFile());
+    }
+
+    /**
+     * @expectedException     \Exception
+     */
+    public function testDeleteFileNotExist() {
+        $fileSystem = $this->getMock('AlaroxFileManager\FileManager\FileSystem', array('fichierExiste'));
+        $fileSystem->expects($this->once())
+        ->method('fichierExiste')
+        ->with('filed.php')
+        ->will($this->returnValue(false));
+
+        $this->fichier->setFileSystem($fileSystem);
+
+        $this->fichier->setPathToFile('filed.php');
+
+        $this->fichier->deleteFile();
     }
 }

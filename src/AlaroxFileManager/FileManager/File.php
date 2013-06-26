@@ -106,4 +106,31 @@ class File
 
         return $this->_fileSystemInstance->ecrireDansFichier($this->_pathToFile, $content, $appendContent) !== false;
     }
+
+    /**
+     * @param string $newFilePath
+     * @return bool
+     * @throws \Exception
+     */
+    public function moveFile($newFilePath)
+    {
+        if (!$this->fileExist()) {
+            throw new \Exception('File "' . $this->_pathToFile . '" can not be moved because it does not exist.');
+        }
+
+        return $this->_fileSystemInstance->deplacerFichier($this->_pathToFile, $newFilePath) === true;
+    }
+
+    /**
+     * @return bool
+     * @throws \Exception
+     */
+    public function deleteFile()
+    {
+        if (!$this->fileExist()) {
+            throw new \Exception('File "' . $this->_pathToFile . '" can not be deleted because it does not exist.');
+        }
+
+        return $this->_fileSystemInstance->supprimerFichier($this->_pathToFile) === true;
+    }
 }

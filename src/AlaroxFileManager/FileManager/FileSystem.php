@@ -153,4 +153,37 @@ class FileSystem
 
         return file_put_contents($cheminVersFichier, $nouveauContenu, $flag);
     }
+
+    /**
+     * @param string $cheminVersFichier
+     * @param string $nouveauCheminFichier
+     * @return bool
+     * @throws \Exception
+     */
+    public function deplacerFichier($cheminVersFichier, $nouveauCheminFichier)
+    {
+        if (!$this->fichierExiste($cheminVersFichier)) {
+            throw new \Exception('File "' . $cheminVersFichier . '" does not exist.');
+        }
+
+        try {
+            return rename($cheminVersFichier, $nouveauCheminFichier);
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    /**
+     * @param string $cheminVersFichier
+     * @return bool
+     * @throws \Exception
+     */
+    public function supprimerFichier($cheminVersFichier)
+    {
+        if (!$this->fichierExiste($cheminVersFichier)) {
+            throw new \Exception('File "' . $cheminVersFichier . '" does not exist.');
+        }
+
+        return unlink($cheminVersFichier);
+    }
 }

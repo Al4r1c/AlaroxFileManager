@@ -6,6 +6,7 @@ use AlaroxFileManager\FileManager\FileSystem;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use org\bovigo\vfs\vfsStreamWrapper;
+use org\bovigo\vfs\visitor\vfsStreamPrintVisitor;
 
 class FileSystemTest extends \PHPUnit_Framework_TestCase
 {
@@ -237,6 +238,53 @@ class FileSystemTest extends \PHPUnit_Framework_TestCase
         $this->_fileSystem->ecrireDansFichier(vfsStream::url('testPath/fichier.php'), "Hello");
 
         $this->assertEquals("Hello", file_get_contents(vfsStream::url('testPath/fichier.php')));
+    }
+
+    public function testDeplacerFichier() {
+        $this->activerFakeFileSystem();
+
+        $this->_fileSystem->creerFichier(vfsStream::url('testPath/fichier.php'));
+
+        $this->assertTrue($this->_fileSystem->deplacerFichier(vfsStream::url('testPath/fichier.php'), vfsStream::url('testPath/nouveauNom.php')));
+
+        $this->assertFalse($this->_fileSystem->deplacerFichier(vfsStream::url('testPath/nouveauNom.php'), vfsStream::url('testPath/otherPath/nouveauNom.php')));
+
+        mkdir(vfsStream::url('testPath/otherPath'));
+
+        $this->assertTrue($this->_fileSystem->deplacerFichier(vfsStream::url('testPath/nouveauNom.php'), vfsStream::url('testPath/otherPath/nouveauNom.php')));
+    }
+
+    /**
+     * @expectedException     \Exception
+     */
+    public function testDeplacerFichierInexistant()
+    {
+        $this->_fileSystem->deplacerFichier('zDONTEXISTz', 'GOGO');
+    }
+
+    public function testSupprimerFichier() {
+        $this->activerFakeFileSystem();
+
+        $this->_fileSystem->creerFichier(vfsStream::url('testPath/fichier.php'));
+
+        $this->assertTrue($this->_fileSystem->supprimerFichier(vfsStream::url('testPath/fichier.php')));
+    }
+
+    public function testSupprimerFichierError() {
+        $this->activerFakeFileSystem();
+
+        $this->_fileSystem->creerFichier(vfsStream::url('testPath/fichier.php'));
+        chmod(vfsStream::url('testPath'), 0000);
+
+        $this->assertFalse($this->_fileSystem->supprimerFichier(vfsStream::url('testPath/fichier.php')));
+    }
+
+    /**
+     * @expectedException     \Exception
+     */
+    public function testSupprimerFichierInexistant()
+    {
+        $this->assertTrue($this->_fileSystem->supprimerFichier('zDONTEXISTz', 'GOGO'));
     }
 
 }

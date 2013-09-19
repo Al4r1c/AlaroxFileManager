@@ -17,6 +17,7 @@ class ChargeurFactory
             case 'xml':
                 $chargeur = new Xml();
                 break;
+            case 'yml':
             case 'yaml':
                 $chargeur = new Yaml();
                 break;

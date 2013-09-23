@@ -72,7 +72,7 @@ class File
     {
         if (!$this->fileExist()) {
             if (!$this->_fileSystemInstance->creerFichier($this->_pathToFile, $rights)) {
-                throw new \Exception('File "' . $this->_pathToFile . '" could not be created.');
+                throw new \Exception('File "' . $this->_pathToFile . '" could not be created. Check permissions.');
             }
         }
 

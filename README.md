@@ -1,4 +1,4 @@
-AlaroxFileManager v0.41
+AlaroxFileManager v0.42
 =================
 
 
@@ -10,7 +10,9 @@ Simple FileManager: allows to:
 *   Move/rename a file,
 *   Delete a file.
 
-Able to load :
+Able to specifically load :
 *   PHP files (.php),
 *   XML files (.xml),
-*   YAML files (.yml, .yaml).
+*   YAML files (.yml, .yaml)
+
+Else, load with default php function ```file_get_contents()```

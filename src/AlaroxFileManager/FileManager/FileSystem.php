@@ -115,14 +115,7 @@ class FileSystem
             throw new \Exception('File "' . $cheminVersFichier . '" does not exist and nothing got charged.');
         }
 
-        /** @var $chargeur AbstractChargeurFichier */
-        if (false ===
-            $chargeur = $this->_chargeurFactory->getClasseDeChargement($this->getExtension($cheminVersFichier))
-        ) {
-            throw new \Exception(
-                'File with extension "' . $this->getExtension($cheminVersFichier) . '" can\'t be loaded. (File: ' .
-                $cheminVersFichier . ')');
-        }
+        $chargeur = $this->_chargeurFactory->getClasseDeChargement($this->getExtension($cheminVersFichier));
 
         return $chargeur->chargerFichier($cheminVersFichier);
     }

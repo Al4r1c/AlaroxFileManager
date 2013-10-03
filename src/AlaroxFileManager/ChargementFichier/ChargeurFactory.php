@@ -22,7 +22,7 @@ class ChargeurFactory
                 $chargeur = new Yaml();
                 break;
             default:
-                $chargeur = false;
+                $chargeur = new Generic();
                 break;
         }
 

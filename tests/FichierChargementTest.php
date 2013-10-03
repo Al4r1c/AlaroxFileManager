@@ -1,6 +1,7 @@
 <?php
 namespace Tests\ServeurTests\Lib;
 
+use AlaroxFileManager\ChargementFichier\Generic;
 use AlaroxFileManager\ChargementFichier\Php;
 use AlaroxFileManager\ChargementFichier\Xml;
 use AlaroxFileManager\ChargementFichier\Yaml;
@@ -57,6 +58,16 @@ class FichierChargementTest extends \PHPUnit_Framework_TestCase
         $chargeur = new Yaml();
         $this->assertEquals(
             array('Test' => array('t1', 't2')), $chargeur->chargerFichier(vfsStream::url('testPath/goAnother.yml'))
+        );
+    }
+
+    public function testChargerGeneric()
+    {
+        file_put_contents(vfsStream::url('testPath/goAnother.smth'), "VoilaVoilaVoilâ");
+
+        $chargeur = new Generic();
+        $this->assertEquals(
+            'VoilaVoilaVoilâ', $chargeur->chargerFichier(vfsStream::url('testPath/goAnother.smth'))
         );
     }
 }

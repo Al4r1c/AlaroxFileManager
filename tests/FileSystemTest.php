@@ -153,24 +153,33 @@ class FileSystemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException     \Exception
-     */
-    public function testChargerFichierChargeurNonPresent()
+    public function testChargerFichierChargeurGeneric()
     {
         $this->activerFakeFileSystem();
+
+        $abstractChargeur = $this->getMockForAbstractClass('AlaroxFileManager\ChargementFichier\AbstractChargeurFichier');
+        $abstractChargeur
+        ->expects($this->once())
+        ->method('chargerFichier')
+        ->with(vfsStream::url('testPath/fichier.xodkeispt99'))
+        ->will(
+                $this->returnValue(array('Working' => 'Dude'))
+            );
 
         $chargeurFactory = $this->getMock('\\FichierChargement\\ChargeurFactory', array('getClasseDeChargement'));
         $chargeurFactory
             ->expects($this->once())
             ->method('getClasseDeChargement')
             ->with('xodkeispt99')
-            ->will($this->returnValue(false));
+            ->will($this->returnValue($abstractChargeur));
 
         $this->_fileSystem->setChargeurFactory($chargeurFactory);
 
         $this->_fileSystem->creerFichier(vfsStream::url('testPath/fichier.xodkeispt99'));
-        $this->_fileSystem->chargerFichier(vfsStream::url('testPath/fichier.xodkeispt99'));
+
+        $this->assertEquals(
+            array('Working' => 'Dude'), $this->_fileSystem->chargerFichier(vfsStream::url('testPath/fichier.xodkeispt99'))
+        );
     }
 
     /**

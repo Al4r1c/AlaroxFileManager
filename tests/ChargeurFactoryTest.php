@@ -28,8 +28,8 @@ class ChargeurFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('AlaroxFileManager\ChargementFichier\Yaml', $this->_chargeurFactory->getClasseDeChargement('yaml'));
     }
 
-    public function testChargeurInexistant()
+    public function testChargeurGeneric()
     {
-        $this->assertFalse($this->_chargeurFactory->getClasseDeChargement('boum'));
+        $this->assertInstanceOf('AlaroxFileManager\ChargementFichier\Generic', $this->_chargeurFactory->getClasseDeChargement('boum'));
     }
 }

@@ -42,7 +42,7 @@ class FichierChargementTest extends \PHPUnit_Framework_TestCase
 
     public function testChargerYaml()
     {
-        file_put_contents(vfsStream::url('testPath/fichier.yaml'), "Test:\n\t-t1\n\t-t2");
+        file_put_contents(vfsStream::url('testPath/fichier.yaml'), "Test:\n\tt1\n\tt2");
 
         $chargeur = new Yaml();
         $this->assertEquals(
@@ -52,7 +52,7 @@ class FichierChargementTest extends \PHPUnit_Framework_TestCase
 
     public function testChargerYml()
     {
-        file_put_contents(vfsStream::url('testPath/goAnother.yml'), "Test:\n\t-t1\n\t-t2");
+        file_put_contents(vfsStream::url('testPath/goAnother.yml'), "Test:\n\tt1\n\tt2");
 
         $chargeur = new Yaml();
         $this->assertEquals(
